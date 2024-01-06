@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_Despesas__c</fullName>
+    <description>Total de despesas da empresa.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Total de despesas da empresa que já foram pagas.</inlineHelpText>
+    <label>Total Despesas</label>
+    <summarizedField>Despesa__c.Custo__c</summarizedField>
+    <summaryFilterItems>
+        <field>Despesa__c.Status__c</field>
+        <operation>equals</operation>
+        <value>Pago pelo colaborador, Aprovado</value>
+    </summaryFilterItems>
+    <summaryForeignKey>Despesa__c.Cliente__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <type>Summary</type>
+</CustomField>

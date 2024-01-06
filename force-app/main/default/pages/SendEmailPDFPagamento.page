@@ -1,0 +1,24 @@
+<apex:page action="{!sendEmail}" standardController="Pagamento__c" extensions="PDFPagamentoExtension">
+
+    <center>
+    	<h1>Resumo do boleto de pagamento - <apex:outputText value="{!Pagamento__c.Cliente__r.Name}"/></h1>
+    </center>
+    
+    <table>
+        <tr>
+            <th>Telefone</th>  <td><apex:outputText value="{!Pagamento__c.Cliente__r.Phone}"/></td>
+        </tr>
+        <tr>
+            <th>CPF/CNPJ</th>  <td><apex:outputText value="{!Pagamento__c.Cliente__r.CPF_CNPJ__c}"/></td>
+        </tr>
+        <tr>
+            <th>Setor</th><td><apex:outputText value="{!Pagamento__c.Cliente__r.Industry}"/></td>
+        </tr>
+        <tr>
+            <th>Limite de crédito</th><td><apex:outputText value="{!Pagamento__c.Cliente__r.Limite_de_Credito__c}"/></td>
+        </tr>
+    </table>
+
+    <p><apex:outputText value="{! Pagamento__c.Cliente__r.Name }"/></p>
+        
+</apex:page>

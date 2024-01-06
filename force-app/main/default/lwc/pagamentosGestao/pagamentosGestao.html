@@ -1,0 +1,119 @@
+<template>
+	<lightning-card title="Gestão de Pagamentos" icon-name="standard:budget">
+
+		<div class="slds-m-horizontal_medium slds-grid slds-gutters">
+
+			<div class="slds-col slds-size_4-of-12">
+				<lightning-combobox name="cliente" label="Cliente" value={clienteSelecionado}
+					placeholder="Selecione o Cliente" options={clientesAtivosOptions} onchange={handleChangeCliente}
+					required></lightning-combobox>
+
+			</div>
+
+			<div class="slds-col slds-size_3-of-12">
+				<lightning-input type="date" name="dataInicio" label="Data Início" required value={dataInicio}
+					onchange={handleChangeDataInicio}></lightning-input>
+			</div>
+
+			<div class="slds-col slds-size_3-of-12">
+				<lightning-input type="date" name="dataFim" label="Data Fim" required value={dataFim}
+					onchange={handleChangeDataFim}></lightning-input>
+			</div>
+
+			<div class="slds-col slds-size_3-of-12">
+				
+			</div>
+		</div>
+
+        <div class="slds-m-top_medium slds-p-top_xx-small slds-align_absolute-center">
+            <lightning-button label="Pesquisar"
+                title="Pesquisar todas as Viagens e Despesas do Período selecionado" icon-name="utility:search"
+                onclick={pesquisarViagensDespesas} class="slds-m-left_x-small">
+            </lightning-button>
+        </div>
+
+        <div class="slds-m-horizontal_x-large">
+            <template if:true={temViagensOuDespesas}>
+                <lightning-tabset>
+                    <lightning-tab label="Viagens" title="Viagens no período">
+                        
+                        <template if:true={temViagens}>
+                            <div style="height: 300px;">
+                                <lightning-datatable
+                                    key-field="Id"
+                                    data={viagens}
+                                    columns={columnsViagens}
+                                    onrowselection={selecionaViagens}
+
+                                    >
+                                </lightning-datatable>
+                            </div>
+                        </template>    
+                        <template if:false={temViagens}>
+
+                            <div class="slds-notify slds-notify_alert slds-alert_warning" role="alert">
+                                <span class="slds-assistive-text">warning</span>
+                                <span class="slds-icon_container slds-icon-utility-warning slds-m-right_x-small" title="Description of icon when needed">
+                                    <lightning-icon icon-name="utility:warning" alternative-text="Warning!" title="Warning" size="small"></lightning-icon>
+                                </span>
+                                <h2>Não há viagens no período selecionado para este cliente!</h2>
+                            </div>
+                        </template>
+     
+                    </lightning-tab>
+                    <lightning-tab label="Despesas" title="Despesas no período">
+                        <template if:true={temDespesas}>
+                            <div style="height: 300px;">
+                                <lightning-datatable
+                                        key-field="id"
+                                        data={despesas}
+                                        columns={columnsDespesas}
+                                        onrowselection={selecionaDespesas}
+
+                                        >
+                                </lightning-datatable>
+                            </div>
+                        </template>    
+                        <template if:false={temDespesas}>
+
+                            <div class="slds-notify slds-notify_alert slds-alert_warning" role="alert">
+                                <span class="slds-assistive-text">warning</span>
+                                <span class="slds-icon_container slds-icon-utility-warning slds-m-right_x-small" title="Description of icon when needed">
+                                    <lightning-icon icon-name="utility:warning" alternative-text="Warning!" title="Warning" size="small"></lightning-icon>
+                                </span>
+                                <h2>Não há despesas no período selecionado para este cliente!</h2>
+                            </div>
+                        </template>    
+                    </lightning-tab>
+                </lightning-tabset>
+
+                <template if:true={exibirBotaoCriarPagamento}>
+                    <div class="slds-p-top_xx-small slds-align_absolute-center">
+                        <lightning-button 
+                                    label="Criar Pagamento"
+                                    title="Criar Pagamento"
+                                    onclick={criarPagamento} 
+                                    icon-name="utility:contract_payment">
+                        </lightning-button>
+                    </div>
+                </template>
+            </template>
+
+            <template if:true={exibirMensagemNaoHaViagemOuDespesas}>
+
+                <div class="slds-m-vertical_large">
+
+                    <div class="slds-notify slds-notify_alert slds-alert_warning" role="alert">
+                        <span class="slds-assistive-text">warning</span>
+                        <span class="slds-icon_container slds-icon-utility-warning slds-m-right_x-small" title="Description of icon when needed">
+                            <lightning-icon icon-name="utility:warning" alternative-text="Warning!" title="Warning" size="small"></lightning-icon>
+                        </span>
+                        <h2>Não há viagens ou despesas no período selecionado para este cliente!</h2>
+                    </div>
+                </div>
+            </template> 
+        </div>  
+
+	</lightning-card>
+
+</template>

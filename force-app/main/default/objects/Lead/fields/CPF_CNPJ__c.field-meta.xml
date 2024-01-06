@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CPF_CNPJ__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>O campo deverá ser preenchido da seguinte maneira: CPF XXX.XXX.XXX-XX e CNPJ: XX.XXX.XXX/XXXX-XX</inlineHelpText>
+    <label>CPF/CNPJ</label>
+    <length>18</length>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

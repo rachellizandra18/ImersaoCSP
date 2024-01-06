@@ -1,0 +1,63 @@
+<aura:component implements="lightning:actionOverride,force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickActionWithoutHeader" access="global" controller="GestaoDeViagensCTRL">
+	<aura:attribute name="ano"      type="String"/>  
+    <aura:attribute name="mes"      type="List" />
+    <aura:attribute name="estado"      type="List" />
+    <aura:attribute name='viagensExistentes'    type='Boolean'      default='false'/>
+    <aura:attribute name="data" type="Object"/>
+    <aura:attribute name="columns" type="List"/>
+    
+    <aura:handler name="init"   value="{!this}"     action="{!c.doInit}"/>
+    
+    <lightning:card>
+    	<aura:set attribute="title">
+            <lightning:icon iconName="standard:quotes" size="small"/>
+            Gestão de Viagens
+        </aura:set>
+    
+        <fieldset class="slds-form-element slds-form-element_compound">
+            <legend class="slds-form-element__legend slds-form-element__label"> </legend>
+            <div class="slds-form-element__control" style="width: 50%;">
+                <div class="slds-form-element__row">
+                    <div class="slds-size_1-of-6">
+                        <div class="slds-form-element">
+                            <div class="slds-form-element__control">
+                                <lightning:input type='text' label='Ano' name='ano' aura:id='ano' maxlength='4' minlength='4' >  </lightning:input>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-size_1-of-6">
+                        <div class="slds-form-element">
+                            <div class="slds-form-element__control">
+                                <lightning:combobox label='Mês'  placeholder="Selecione um mês" aura:id='mes' options="{! v.mes }"></lightning:combobox>                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-size_1-of-6">
+                        <div class="slds-form-element">
+                            <div class="slds-form-element__control">
+                                <lightning:combobox label='Estado'  placeholder="Selecione um estado" aura:id='estado' options="{! v.estado }"></lightning:combobox>                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-size_1-of-6" style='display: flex;align-items: flex-end'>
+                        <div class="slds-form-element">                            
+                            <div class="slds-form-element__control">
+                                <lightning:button class="slds-button"  label='Exibir' variant='brand' onclick="{! c.exibirViagens }"  > </lightning:button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>     
+    </lightning:card>
+        <aura:if isTrue='{!v.viagensExistentes}'>
+        <div style="background-color: white; padding: 1%; padding-bottom: 1%; height: 100%"> 
+			<b><h2 class="slds-text-heading_medium slds-m-bottom_xx-small">Viagens realizadas no período</h2></b>
+            <lightning:datatable
+                    keyField="id"
+                    data="{! v.data }"
+                    columns="{! v.columns }"
+                    hideCheckboxColumn="true"/>
+        </div>
+    </aura:if>
+</aura:component>

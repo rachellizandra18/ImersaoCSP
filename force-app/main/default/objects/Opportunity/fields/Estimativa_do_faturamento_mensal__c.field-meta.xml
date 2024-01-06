@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Estimativa_do_faturamento_mensal__c</fullName>
+    <externalId>false</externalId>
+    <formula>(Quantidade_media_de_viagens__c *  Valor_medio_de_viagem__c) *  Estimativa_da_taxa__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Estimativa do faturamento mensal</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

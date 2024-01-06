@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CriarDespesaSemClienteAtivo</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+ISNEW(),
+NOT(ISPICKVAL(Cliente__r.Status__c, &quot;Ativo&quot;))
+)</errorConditionFormula>
+    <errorMessage>Não é possível criar esse registro com cliente que não é ativo.</errorMessage>
+</ValidationRule>

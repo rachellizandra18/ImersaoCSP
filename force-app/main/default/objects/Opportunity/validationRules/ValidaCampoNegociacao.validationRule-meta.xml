@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ValidaCampoNegociacao</fullName>
+    <active>true</active>
+    <description>Valida fase de Negociação</description>
+    <errorConditionFormula>AND (
+  ISPICKVAL(StageName, &quot;Em negociação&quot;),  
+  OR (
+  ISBLANK( Valor_medio_de_viagem__c ), 
+  Valor_medio_de_viagem__c &lt; 100
+  )
+)</errorConditionFormula>
+    <errorMessage>Na fase de negociação, é necessário preencher o campo &quot;Valor médio de viagem&quot; e o mesmo necessita ser maior que R$100,00.</errorMessage>
+</ValidationRule>

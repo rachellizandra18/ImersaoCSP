@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Tipo_de_Companhia__c</fullName>
+    <externalId>false</externalId>
+    <label>Tipo de Companhia</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Aérea</fullName>
+                <default>false</default>
+                <label>Aérea</label>
+            </value>
+            <value>
+                <fullName>Rodoviária</fullName>
+                <default>false</default>
+                <label>Rodoviária</label>
+            </value>
+            <value>
+                <fullName>Aplicativo de transporte</fullName>
+                <default>false</default>
+                <label>Aplicativo de transporte</label>
+            </value>
+            <value>
+                <fullName>Ferroviário</fullName>
+                <default>false</default>
+                <label>Ferroviário</label>
+            </value>
+            <value>
+                <fullName>Pluvial</fullName>
+                <default>false</default>
+                <label>Pluvial</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

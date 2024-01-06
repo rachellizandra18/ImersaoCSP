@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Status_Novo_Para_Aprovado_SemAprovacao</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+Pago__c=false,
+ISPICKVAL(PRIORVALUE(Status__c), &quot;Novo&quot;),
+ISPICKVAL(Status__c, &quot;Aprovado&quot;)
+)</errorConditionFormula>
+    <errorMessage>Para a despesa ser aprovada, deve passar pelo processo de aprovação com o supervisor e o campo Pago estar preenchido.</errorMessage>
+</ValidationRule>

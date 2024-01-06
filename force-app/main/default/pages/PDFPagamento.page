@@ -1,0 +1,74 @@
+<apex:page standardController="Pagamento__c" extensions="PDFPagamentoExtension" renderAs="pdf" language="pt-BR">
+     <!--colocar na primeira linha: action="{!attachPDF}"-->
+    
+    <apex:stylesheet value="{!$Resource.pdfStyle}"/>
+    
+    <div align="right"><strong>Data</strong>: {!DAY(Today())} {!CASE(MONTH(Today()), 1, 'Janeiro', 2, 'Fevereiro', 3, 'Março', 4, 'Abril', 5, 'Maio', 6, 'Junho', 7, 'Julho', 8, 'Agosto', 9, 'Setembro', 10, 'Outubro', 11, 'Novembro', 12, 'Dezembro', 'Desconhecido')} {!YEAR(Today())}</div>
+	<div align="right"><strong>Gerado por</strong>: {!$User.FirstName} {!$User.LastName}</div>
+   
+    <center> 
+       <h1>Boleto - <apex:outputText value="{!Pagamento__c.Name}"/></h1>  
+    </center>
+    
+    <hr/> 
+    <table>
+        <tr>
+            <th>Cliente</th>
+            <td><apex:outputText value="{!Pagamento__c.Cliente__r.Name}"/></td>
+        </tr>
+        <tr>
+            <th>Status</th>
+            <td><apex:outputText value="{!Pagamento__c.Status__c}"/></td>
+        </tr>
+        <tr>
+            <th>Valor total do boleto</th>
+            <td>
+            <br/>
+            <apex:outputText value="{0, number, currency}">
+                <apex:param value="{!valorBoleto}"/>
+            </apex:outputText>
+               <br/>
+           </td>
+        </tr>        
+    </table> 
+    
+   <hr/>
+	    
+    <h2>Viagens</h2> 
+	<table>
+        <apex:repeat value="{!Pagamento__c.Viagens__r}" var="viagem">    
+        <tr>
+            <th>Custo</th>
+            <td><apex:outputText value="{!viagem.Custo__c}"/></td>
+            <th>Origem</th>
+            <td><apex:outputText value="{!viagem.Origem__c}"/></td>
+            <th>Destino</th>
+            <td><apex:outputText value="{!viagem.Destino__c}"/></td>
+        </tr>                 
+        </apex:repeat>
+    </table>    
+    
+    <h2>Despesas</h2> 
+	<table>
+        <apex:repeat value="{!Pagamento__c.Despesas__r}" var="despesa">    
+        <tr>
+            <th>Custo</th>
+            <td><apex:outputText value="{!despesa.Custo__c}"/></td>
+            <th>Descrição</th>
+            <td><apex:outputText value="{!despesa.Descricao__c}"/></td>
+        </tr>                 
+        </apex:repeat>
+    </table> 
+    
+    <hr/>     
+    
+	<footer>
+    <div style="color: #999999; font-size: 90%; margin-top: 15px;">
+		<div>Empresa: Pink Miles</div>
+		<div>Site: https://interactiveties.com/blog/2015/render-visualforce-pdf.php</div>
+		<div>Dúvidas: rachellizandra@outlook.com</div>
+	</div>        
+    </footer>  
+   
+    
+</apex:page>

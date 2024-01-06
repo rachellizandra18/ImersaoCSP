@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Alteracao_de_Limite_de_Credito_Aprovada</fullName>
+        <description>Alteração de Limite de Crédito Aprovada</description>
+        <protected>false</protected>
+        <recipients>
+            <type>accountOwner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Alteracao_de_Limite_de_Credito_Aprovada</template>
+    </alerts>
+    <alerts>
+        <fullName>Alteracao_de_limite_de_credito_negada</fullName>
+        <description>Alteração de limite de crédito negada</description>
+        <protected>false</protected>
+        <recipients>
+            <type>accountOwner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Alteracao_de_Limite_de_Credito_N_o_Aprovada</template>
+    </alerts>
+    <alerts>
+        <fullName>Solicitacao_negada</fullName>
+        <description>Solicitação negada</description>
+        <protected>false</protected>
+        <recipients>
+            <type>accountOwner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Alteracao_de_Limite_de_Credito_N_o_Aprovada</template>
+    </alerts>
+    <alerts>
+        <fullName>Solicitacao_para_alteracao_de_limite_de_credito</fullName>
+        <description>Solicitação para alteração de limite de crédito</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>Grupo_para_Aprovacao</recipient>
+            <type>group</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Solicitacao_de_novo_limite_de_credito</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Atualiza_Limilite_de_Credito</fullName>
+        <field>Limite_de_Credito__c</field>
+        <formula>Novo_Limite_de_Credito_Solicitado__c</formula>
+        <name>Atualiza Limilite de Crédito</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Atualiza_Status</fullName>
+        <field>Status__c</field>
+        <literalValue>Ativo</literalValue>
+        <name>Atualiza Status</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Atualiza_Status_Ativo</fullName>
+        <field>Status__c</field>
+        <literalValue>Ativo</literalValue>
+        <name>Atualiza Status Ativo</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+</Workflow>

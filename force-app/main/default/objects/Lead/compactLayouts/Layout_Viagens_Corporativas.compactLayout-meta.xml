@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Layout_Viagens_Corporativas</fullName>
+    <fields>Company</fields>
+    <fields>Email</fields>
+    <fields>Status</fields>
+    <label>Layout Viagens Corporativas</label>
+</CompactLayout>

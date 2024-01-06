@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ValidaLimiteCreditoEPorte</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND (
+ ISPICKVAL(StageName,&quot;Fechado/Ganho&quot;),
+ NOT(ISPICKVAL(Status_da_solicitacao_de_credito__c, &quot;Aprovado&quot;)),
+ OR(
+   AND(
+    ISPICKVAL(Account.Porte_da_empresa__c,&quot;Pequeno&quot;), 
+    Account.Limite_de_Credito__c &gt; 5000
+   ),
+   AND(
+    ISPICKVAL(Account.Porte_da_empresa__c,&quot;Médio&quot;), 
+    Account.Limite_de_Credito__c &gt; 15000
+   ),
+   AND(
+    ISPICKVAL(Account.Porte_da_empresa__c,&quot;Grande&quot;), 
+    Account.Limite_de_Credito__c &gt; 55000
+   )
+)
+)</errorConditionFormula>
+    <errorMessage>O porte da empresa não é compatível com o valor estimado mensal, por favor, solicite ajuste do limite de crédito.</errorMessage>
+</ValidationRule>

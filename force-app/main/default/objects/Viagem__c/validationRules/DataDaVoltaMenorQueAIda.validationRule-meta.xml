@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DataDaVoltaMenorQueAIda</fullName>
+    <active>false</active>
+    <errorConditionFormula>Data_Hora_da_Volta__c &lt;  Data_Hora_da_Ida__c</errorConditionFormula>
+    <errorMessage>A data da volta não pode ser menor que a data da ida.</errorMessage>
+</ValidationRule>

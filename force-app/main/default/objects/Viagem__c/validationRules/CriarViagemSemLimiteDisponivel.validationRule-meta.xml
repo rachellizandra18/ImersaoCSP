@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CriarViagemSemLimiteDisponivel</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND (
+   ISNEW(),
+   Cliente__r.Limite_de_Credito_Disponivel__c == 0
+)</errorConditionFormula>
+    <errorMessage>Não é permitido criar esse registro pois esse cliente não tem mais limite de crédito disponível.</errorMessage>
+</ValidationRule>

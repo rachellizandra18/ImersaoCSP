@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Novo_Limite_de_Credito_Solicitado__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>Campo com o novo limite de crédito solicitado.</inlineHelpText>
+    <label>Novo Limite de Crédito Solicitado</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Currency</type>
+</CustomField>
