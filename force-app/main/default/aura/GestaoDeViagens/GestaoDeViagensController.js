@@ -58,8 +58,10 @@
         component.set('v.columns', [
             {label: 'Número da Viagem', fieldName: 'Name', type: 'url', typeAttributes: {label: { fieldName: 'Name' }, target: '_blank'}},
             {label: 'Data/Hora da Ida', fieldName: 'Data_Hora_da_Ida__c', type: 'datetime'},
-            {label: 'Data/Hora da Volta', fieldName: 'EndDate', type: 'datetime'},
-            {label: 'Companhia', fieldName: 'Companhia__r.Name', type: 'text'}
+            {label: 'Data/Hora da Volta', fieldName: 'Data_Hora_da_Volta__c', type: 'datetime'},
+            {label: 'Colaborador', fieldName: 'Colaborador__r.FirstName', type: 'text'},
+            {label: 'Companhia', fieldName: 'Companhia__r.Name', type: 'text'},
+            {label: 'Custo', fieldName: 'Custo__c', type: 'currency'}
         ]);
 
         if(ano != '' && mes != '' && estado != ''){

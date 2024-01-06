@@ -27,7 +27,7 @@
                     if (errors[0] && errors[0].message) {
                         this.showToast('Houve um erro ao realizar a requisição',errors[0].message, 'error');
                         $A.get('e.force:refreshView').fire();	
-                        console.log('ocorreu um erro!!!!');
+                        console.log('ocorreu um erro!!!!' + errors[0].message);
                     }
                 }                		
             }
