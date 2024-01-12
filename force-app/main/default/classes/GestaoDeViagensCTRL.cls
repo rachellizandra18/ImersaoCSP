@@ -27,20 +27,20 @@ public class GestaoDeViagensCTRL {
                                                   AND Estado_de_Destino__c = :estado
                                                  ];
 
-        for(Viagem__c viagem : viagensRealizadasMensal){
-            Datetime dataViagem = Datetime.newInstance(Integer.valueOf(ano), mapMesString.get(mes), viagem.Data_Hora_da_Ida__c.day());
-            String dateStr = dataViagem.format('yyyy-MM-dd hh:ss');
-            System.debug('Data viagem 1 ' + dataViagem);
-
-            String dataIda = viagem.Data_Hora_da_Ida__c.format('yyyy-MM-dd hh:ss');
-            System.debug('data ida formatada:'+dataIda);
-            System.debug('Comparação das datas:'+dateStr);
-            if(dataIda == dateStr){
-                viagem.Data_Hora_da_Ida__c = dataViagem;
-                viagens.add(viagem);
+        if(!viagensRealizadasMensal.isEmpty()){
+            for(Viagem__c viagem : viagensRealizadasMensal){
+                Datetime dataViagem = Datetime.newInstance(Integer.valueOf(ano), mapMesString.get(mes), viagem.Data_Hora_da_Ida__c.day());
+                String dateStr = dataViagem.format('yyyy-MM-dd hh:ss');
+                System.debug('Data viagem 1 ' + dataViagem);
+    
+                String dataIda = viagem.Data_Hora_da_Ida__c.format('yyyy-MM-dd hh:ss');
+                System.debug('data ida formatada:'+dataIda);
+                System.debug('Comparação das datas:'+dateStr);
+                if(dataIda == dateStr){
+                    viagem.Data_Hora_da_Ida__c = dataViagem;
+                    viagens.add(viagem);
+                }
             }
-
-            System.debug('Data viagem ' + dataViagem);
         }
 
         System.debug('Estado ' + estado);

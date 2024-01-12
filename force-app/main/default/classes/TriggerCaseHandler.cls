@@ -9,13 +9,13 @@ public class TriggerCaseHandler {
         Map<Id, Case> oldMap = (Map<Id, Case>) Trigger.oldMap;
 
         if(Trigger.isAfter && Trigger.isInsert) {
-
+			atualizarContaComCasoMaisRecente(newList);
         } else if (Trigger.isAfter && Trigger.isUpdate){
-
+            alterarCampoRatingNaContaParaCasosFechados(newList, oldMap);
         }
     }
 
-    public static void alterarCampoRatingNaContaParaCasosFechados(List<Case> newList, Map<Id, Case> oldMap){
+    private static void alterarCampoRatingNaContaParaCasosFechados(List<Case> newList, Map<Id, Case> oldMap){
         Set<Id> accountIds = new Set<Id>();
         Map<Id, Integer> mapCasosCount = new Map<Id, Integer>();
         List<Account> listToUpdate = new List<Account>();
@@ -72,4 +72,42 @@ public class TriggerCaseHandler {
         }
 
     }
+    
+    private static void atualizarContaComCasoMaisRecente(List<Case> newList){
+        Set<Id> accIds = new Set<Id>();
+        
+        if(!newList.isEmpty()){
+            for(Case caso : newList){
+                if(caso.AccountId != null){
+                    accIds.add(caso.AccountId);
+                }
+            }
+        }
+        
+        if(!accIds.isEmpty()){
+            Map<Id, Account> mapContas = new Map<Id, Account>([SELECT Id, Ultimo_Caso_Recebido__c FROM Account WHERE Id IN :accIds]);
+            Map<Id, Account> mapContasUpdate = new Map<Id, Account>();
+            Map<Id, Case> mapCasos = new Map<Id, Case>();
+            
+            if(!newList.isEmpty()){
+                for(Case caso : newList){
+                    if(mapContas.containsKey(caso.AccountId)) {
+                        Account conta = mapContas.get(caso.AccountId);
+                        
+                        if(conta.Ultimo_Caso_Recebido__c != caso.CaseNumber){
+                            //Id recordId = caso.Id;
+                            //String link = URL.getSalesforceBaseUrl().toExternalForm()+'/'+recordId;
+                            conta.Ultimo_Caso_Recebido__c = caso.CaseNumber + ' - ' + caso.Priority;
+                            mapContasUpdate.put(conta.Id, conta);
+                        }
+                    }
+                }
+            }
+            
+            if(!mapContasUpdate.isEmpty()){
+                update mapContasUpdate.values();
+            }
+        }
+    }
+
 }

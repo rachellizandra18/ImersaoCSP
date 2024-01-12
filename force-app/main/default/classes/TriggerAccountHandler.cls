@@ -16,6 +16,8 @@ public class TriggerAccountHandler {
             atualizarTelefoneDeContatosRelacionadosAConta(newList, oldMap);
         } else if(Trigger.isBefore && (Trigger.isInsert || Trigger.isUpdate)){
             validarDuplicidadeDeCPFOuCNPJ(newList, oldMap);
+        } else if(Trigger.isBefore && Trigger.isDelete){
+            previnirDelecaoParaContasAtivas(oldList);
         }
     }
     
@@ -109,6 +111,16 @@ public class TriggerAccountHandler {
         if(!accMap.isEmpty()){
             for(Account conta : [SELECT Id, CPF_CNPJ__c FROM Account WHERE CPF_CNPJ__c IN : accMap.keySet()]){
                 accMap.get(conta.CPF_CNPJ__c).addError('O CPF/CNPJ informado já existe!');
+            }
+        }
+    }
+
+    public static void previnirDelecaoParaContasAtivas(List<Account> contas){
+        if(!contas.isEmpty()){
+            for(Account conta : contas){
+                if(conta.Status__c == 'Ativo'){
+                    conta.addError('Não é possível deletar uma conta que está ativa. Desative-a e tente novamente');
+                }
             }
         }
     }
