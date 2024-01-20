@@ -1,0 +1,87 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickActionWithoutHeader" access="global" controller="BuscarCEP" >
+    
+    <aura:attribute name="showSearchCEP" type="Boolean" default="true"/>
+    <aura:attribute name="showAddress" type="Boolean" default="false"/>
+    <aura:attribute name="logradouro" type="String"/>
+    <aura:attribute name="numero" type="String"/>
+    <aura:attribute name="complemento" type="String"/>
+    <aura:attribute name="cidade" type="String"/>
+    <aura:attribute name="bairro" type="String"/>
+    <aura:attribute name="estado" type="String"/>
+
+    <div style="width: 80%; 
+                margin: 20px;
+                padding: 15px;">
+        <lightning:card>
+            <aura:set attribute="title">
+                <lightning:icon style="padding-right: 2px;" iconName="utility:home" size="small"></lightning:icon>
+                Buscar Endereço
+            </aura:set>
+            <aura:set attribute="footer">
+                <aura:if isTrue="{! v.showSearchCEP }">                
+                    <lightning:button variant="brand" label="Procurar CEP" onclick="{! c.buscarCEP }"></lightning:button>
+                    <aura:set attribute="else"> 
+                        <lightning:button variant="neutral" label="Cancelar" onclick="{! c.handleDismiss }"></lightning:button>                
+                        <lightning:button variant="brand" label="Salvar" onclick="{! c.salvarEndereco }"></lightning:button>
+                    </aura:set>
+                </aura:if>               
+            </aura:set>
+                <div style="width: 50%;">
+                    <lightning:input type="text" aura:id="cep" label="CEP" name="cep" placeholder="Digite apenas os números"></lightning:input>    
+                </div>               
+                   
+            <aura:if isTrue="{! v.showAddress }">
+                <div class="slds-form-element slds-form-element_compound slds-form-element_address">                    
+                    <div class="slds-form-element__control">
+                        <div class="slds-form-element__row">
+                            <div class="slds-size_2-of-4">
+                                <div class="slds-form-element">
+                                    <div class="slds-form-element__control">
+                                        <lightning:input type="text" aura:id="endereco"  label="Endereço" name="endereco" value="{! v.logradouro }" readonly=""></lightning:input>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-size_1-of-4">
+                                <div class="slds-form-element">
+                                    <div class="slds-form-element__control">
+                                        <lightning:input type="text" aura:id="numero"  label="Número"  name="numero" value="{! v.numero }" ></lightning:input>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-size_1-of-4">
+                                <div class="slds-form-element">
+                                    <div class="slds-form-element__control">
+                                        <lightning:input type="text" aura:id="complemento"  label="Complemento" name="complemento" value="{! v.complemento }"></lightning:input>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-form-element__row">
+                            <div class="slds-size_2-of-6">
+                                <div class="slds-form-element">
+                                <div class="slds-form-element__control">
+                                    <lightning:input type="text" aura:id="cidade"  label="Cidade" name="cidade" value="{! v.cidade }" readonly=""></lightning:input>
+                                </div>
+                                </div>
+                            </div>
+                            <div class="slds-size_2-of-6">
+                                <div class="slds-form-element">
+                                    <div class="slds-form-element__control">
+                                        <lightning:input type="text" aura:id="bairro"  label="Bairro" name="bairro" value="{! v.bairro }" readonly=""></lightning:input>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-size_2-of-6">
+                                <div class="slds-form-element">
+                                    <div class="slds-form-element__control">
+                                        <lightning:input type="text" aura:id="estado"  label="Estado" name="estado" value="{! v.estado }" readonly=""></lightning:input>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+            </aura:if>
+        </lightning:card>  
+    </div>
+</aura:component>
